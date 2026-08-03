@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "scandium";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(14% 0.018 260);
+  --color-base-200: oklch(18% 0.022 260);
+  --color-base-300: oklch(23% 0.026 260);
+  --color-base-content: oklch(96% 0.008 90);
+
+  --color-primary: oklch(82% 0.15 88);
+  --color-primary-content: oklch(18% 0.03 88);
+
+  --color-secondary: oklch(72% 0.1 225);
+  --color-secondary-content: oklch(15% 0.02 225);
+
+  --color-accent: oklch(76% 0.12 165);
+  --color-accent-content: oklch(16% 0.025 165);
+
+  --color-neutral: oklch(25% 0.025 260);
+  --color-neutral-content: oklch(94% 0.008 90);
+
+  --color-info: oklch(72% 0.13 235);
+  --color-success: oklch(72% 0.15 155);
+  --color-warning: oklch(82% 0.15 88);
+  --color-error: oklch(68% 0.18 25);
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1.5rem;
+
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Manrope", system-ui, sans-serif;
+  background:
+    radial-gradient(
+      circle at 15% 5%,
+      rgb(244 201 93 / 12%),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgb(91 156 211 / 10%),
+      transparent 30rem
+    ),
+    #090c12;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+::selection {
+  color: #17130a;
+  background: #f4c95d;
+}
