@@ -9,27 +9,30 @@
   prefersdark: true;
   color-scheme: dark;
 
-  --color-base-100: oklch(14% 0.018 260);
-  --color-base-200: oklch(18% 0.022 260);
-  --color-base-300: oklch(23% 0.026 260);
+  /* Main dark surfaces */
+  --color-base-100: oklch(13% 0.019 260);
+  --color-base-200: oklch(17% 0.023 260);
+  --color-base-300: oklch(22% 0.027 260);
   --color-base-content: oklch(96% 0.008 90);
 
-  --color-primary: oklch(82% 0.15 88);
-  --color-primary-content: oklch(18% 0.03 88);
+  /* Warm weather accent */
+  --color-primary: oklch(84% 0.17 88);
+  --color-primary-content: oklch(19% 0.035 82);
 
-  --color-secondary: oklch(72% 0.1 225);
-  --color-secondary-content: oklch(15% 0.02 225);
+  /* Supporting sky colour */
+  --color-secondary: oklch(75% 0.105 225);
+  --color-secondary-content: oklch(16% 0.025 225);
 
-  --color-accent: oklch(76% 0.12 165);
+  --color-accent: oklch(78% 0.12 165);
   --color-accent-content: oklch(16% 0.025 165);
 
-  --color-neutral: oklch(25% 0.025 260);
-  --color-neutral-content: oklch(94% 0.008 90);
+  --color-neutral: oklch(25% 0.026 260);
+  --color-neutral-content: oklch(95% 0.008 90);
 
-  --color-info: oklch(72% 0.13 235);
-  --color-success: oklch(72% 0.15 155);
-  --color-warning: oklch(82% 0.15 88);
-  --color-error: oklch(68% 0.18 25);
+  --color-info: oklch(74% 0.13 235);
+  --color-success: oklch(74% 0.15 155);
+  --color-warning: oklch(84% 0.17 88);
+  --color-error: oklch(69% 0.18 25);
 
   --radius-selector: 1rem;
   --radius-field: 1rem;
@@ -61,7 +64,7 @@ html {
    */
   scrollbar-width: thin;
   scrollbar-color:
-    rgb(244 201 93 / 42%)
+    rgb(244 201 93 / 46%)
     #080c12;
 }
 
@@ -81,14 +84,30 @@ body {
   color: #f7f8fa;
 
   /*
-   * A quiet background without coloured radial glows.
+   * A calm atmospheric background. The highlights are
+   * static, subtle, and do not compete with weather data.
    */
   background:
+    radial-gradient(
+      circle at 50% -15%,
+      rgb(244 201 93 / 9%) 0%,
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgb(102 180 220 / 5%) 0%,
+      transparent 28rem
+    ),
     linear-gradient(
       180deg,
-      #090d14 0%,
-      #070a0f 100%
+      #090e16 0%,
+      #070a10 58%,
+      #06090e 100%
     );
+}
+
+#root {
+  min-height: 100vh;
 }
 
 /*
@@ -107,14 +126,14 @@ body {
 ::-webkit-scrollbar-thumb {
   min-height: 44px;
 
-  background: rgb(244 201 93 / 38%);
+  background: rgb(244 201 93 / 42%);
 
   border: 3px solid #080c12;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(244 201 93 / 58%);
+  background: rgb(244 201 93 / 62%);
 }
 
 ::-webkit-scrollbar-corner {
@@ -129,4 +148,166 @@ input {
 ::selection {
   color: #17130a;
   background: #f4c95d;
+}
+
+/*
+ * Gives the second heading line more character without
+ * introducing a moving or constantly glowing effect.
+ */
+.weather-heading-accent {
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    #ffe17a 0%,
+    #f7be38 48%,
+    #ff9f43 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/*
+ * A compact surface around the search controls.
+ */
+.weather-search-shell {
+  background:
+    linear-gradient(
+      145deg,
+      rgb(18 25 36 / 76%),
+      rgb(11 17 25 / 66%)
+    );
+
+  border: 1px solid rgb(255 255 255 / 8%);
+
+  box-shadow:
+    0 18px 48px rgb(0 0 0 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 3%);
+}
+
+/*
+ * The main action uses a static gold gradient, restrained
+ * elevation, and a clear keyboard-focus state.
+ */
+.weather-primary-button {
+  color: #211805;
+  background-image: linear-gradient(
+    135deg,
+    #ffe06f 0%,
+    #f7bf3b 52%,
+    #f1aa28 100%
+  );
+
+  border-color: rgb(255 224 111 / 72%);
+
+  box-shadow:
+    0 10px 26px rgb(244 180 45 / 18%),
+    inset 0 1px 0 rgb(255 255 255 / 42%);
+
+  transition:
+    transform 150ms ease-out,
+    filter 150ms ease-out,
+    box-shadow 150ms ease-out,
+    border-color 150ms ease-out;
+}
+
+.weather-primary-button:hover:not(:disabled) {
+  filter: brightness(1.04) saturate(1.04);
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 14px 32px rgb(244 180 45 / 24%),
+    inset 0 1px 0 rgb(255 255 255 / 48%);
+}
+
+.weather-primary-button:active:not(:disabled) {
+  filter: brightness(0.98);
+  transform: translateY(0);
+
+  box-shadow:
+    0 7px 18px rgb(244 180 45 / 16%),
+    inset 0 1px 0 rgb(255 255 255 / 35%);
+}
+
+.weather-primary-button:focus-visible {
+  outline: 3px solid rgb(255 224 111 / 72%);
+  outline-offset: 3px;
+}
+
+/*
+ * Main weather-result surface. The thin top highlight adds
+ * depth without a continuous aura or pointer-tracking effect.
+ */
+.weather-result-card {
+  position: relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgb(19 27 39 / 97%),
+      rgb(11 17 26 / 98%)
+    );
+
+  border: 1px solid rgb(255 255 255 / 11%);
+
+  box-shadow:
+    0 24px 60px rgb(0 0 0 / 34%),
+    0 0 0 1px rgb(244 201 93 / 3%);
+}
+
+.weather-result-card::before {
+  position: absolute;
+  top: 0;
+  right: 10%;
+  left: 10%;
+  height: 1px;
+
+  content: "";
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 222 112 / 48%),
+    transparent
+  );
+}
+
+/*
+ * Error feedback uses both colour and an icon/text label.
+ */
+.weather-error-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgb(35 20 25 / 72%),
+      rgb(16 19 28 / 92%)
+    );
+
+  border: 1px solid rgb(239 91 102 / 30%);
+
+  box-shadow:
+    0 18px 44px rgb(0 0 0 / 25%),
+    inset 0 1px 0 rgb(255 255 255 / 3%);
+}
+
+/*
+ * Remove unnecessary movement for people who request
+ * reduced motion in their operating-system settings.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .weather-primary-button:hover:not(:disabled) {
+    transform: none;
+  }
 }

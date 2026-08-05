@@ -7,11 +7,16 @@ const WEATHER_API =
 /**
  * Reads an API response and creates a useful error message.
  */
-async function readResponse(response, fallbackMessage) {
-  const data = await response.json();
+async function readResponse(
+  apiResponse,
+  fallbackMessage
+) {
+  const data = await apiResponse.json();
 
-  if (!response.ok || data.error) {
-    throw new Error(data.reason || fallbackMessage);
+  if (!apiResponse.ok || data.error) {
+    throw new Error(
+      data.reason || fallbackMessage
+    );
   }
 
   return data;
@@ -21,19 +26,19 @@ async function readResponse(response, fallbackMessage) {
  * Converts a city name into latitude and longitude.
  */
 export async function searchLocation(city) {
-  const parameters = new URLSearchParams({
+  const locationParameters = new URLSearchParams({
     name: city,
     count: "1",
     language: "en",
     format: "json",
   });
 
-  const response = await fetch(
-    `${GEOCODING_API}?${parameters}`
+  const locationResponse = await fetch(
+    `${GEOCODING_API}?${locationParameters}`
   );
 
   const data = await readResponse(
-    response,
+    locationResponse,
     "Could not search for that city."
   );
 
@@ -62,7 +67,7 @@ export async function fetchCurrentWeather(
   latitude,
   longitude
 ) {
-  const parameters = new URLSearchParams({
+  const weatherParameters = new URLSearchParams({
     latitude: String(latitude),
     longitude: String(longitude),
 
@@ -79,12 +84,12 @@ export async function fetchCurrentWeather(
     timezone: "auto",
   });
 
-  const response = await fetch(
-    `${WEATHER_API}?${parameters}`
+  const weatherResponse = await fetch(
+    `${WEATHER_API}?${weatherParameters}`
   );
 
   return readResponse(
-    response,
+    weatherResponse,
     "Could not load the current weather."
   );
 }
