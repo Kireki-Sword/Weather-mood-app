@@ -10,6 +10,7 @@ import LoadingWeatherCard from "./components/LoadingWeatherCard";
 import WeatherError from "./components/WeatherError";
 import CurrentWeatherCard from "./components/CurrentWeatherCard";
 import FiveDayForecast from "./components/FiveDayForecast";
+import MoodSuggestion from "./components/MoodSuggestion";
 
 import {
   fetchWeather,
@@ -17,33 +18,31 @@ import {
 } from "./services/weatherApi";
 
 export default function App() {
+  // Main application state
   const [location, setLocation] =
     useState(null);
-
   const [weather, setWeather] =
     useState(null);
-
   const [isLoading, setIsLoading] =
     useState(false);
-
   const [error, setError] = useState("");
 
-  // Controls Celsius/Fahrenheit throughout the app.
-  const [
-    temperatureUnit,
-    setTemperatureUnit,
-  ] = useState("celsius");
+  // Controls Celsius or Fahrenheit
+  const [ temperatureUnit, setTemperatureUnit] = useState("celsius");
 
+  // Used to scroll to the results section
   const resultRegionRef = useRef(null);
 
-  const hasPositionedCurrentSearch =
-    useRef(false);
+  // Prevents repeated scrolling for the same search
+  const hasPositionedCurrentSearch = useRef(false);
 
+  // Checks whether loading, an error, or weather results are visible
   const hasVisibleResultState =
     isLoading ||
     Boolean(error) ||
     Boolean(location && weather);
 
+  // Scroll to the results section when a search begins
   useEffect(() => {
     if (
       !hasVisibleResultState ||
@@ -65,7 +64,7 @@ export default function App() {
         const resultPosition =
           resultRegion.getBoundingClientRect();
 
-        // This matches Header.jsx's 72px height.
+        // Account for the sticky header
         const stickyHeaderHeight = 72;
         const spaceBelowHeader = 16;
 
@@ -75,6 +74,7 @@ export default function App() {
           stickyHeaderHeight -
           spaceBelowHeader;
 
+        // Respect the user's reduced-motion setting
         const prefersReducedMotion =
           window.matchMedia(
             "(prefers-reduced-motion: reduce)"
@@ -91,6 +91,7 @@ export default function App() {
           true;
       });
 
+    // Cancel the animation frame when the effect reruns
     return () => {
       window.cancelAnimationFrame(
         animationFrame
@@ -101,6 +102,7 @@ export default function App() {
     isLoading,
   ]);
 
+  // Handles loading, errors, location lookup, and weather requests
   async function runWeatherSearch(
     resolveLocation
   ) {
@@ -124,6 +126,7 @@ export default function App() {
 
       setLocation(nextLocation);
       setWeather(nextWeather);
+
     } catch (requestError) {
       const message =
         requestError instanceof Error
@@ -136,12 +139,14 @@ export default function App() {
     }
   }
 
+  // Search using the city entered by the user
   function handleSearch(city) {
     return runWeatherSearch(() =>
       searchLocation(city)
     );
   }
 
+  // Search using an autocomplete location
   function handleLocationSelect(
     selectedLocation
   ) {
@@ -150,6 +155,7 @@ export default function App() {
     );
   }
 
+  // Clear the previous error when the input changes
   function handleSearchInputChange() {
     if (error) {
       setError("");
@@ -181,6 +187,7 @@ export default function App() {
           isLoading={isLoading}
         />
 
+        {/* Displays loading, error, or weather results */}
         <div
           ref={resultRegionRef}
           className={
@@ -214,6 +221,10 @@ export default function App() {
                   temperatureUnit={
                     temperatureUnit
                   }
+                />
+
+                <MoodSuggestion
+                  current={weather.current}
                 />
               </>
             )}
