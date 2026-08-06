@@ -16,12 +16,12 @@ import {
 } from "../services/weatherApi";
 
 const CITY_EXAMPLES = [
-  "New York",
   "Vancouver",
   "Tokyo",
-  "Cape Town",
-  "London",
-  "Nairobi",
+  "Milan",
+  "Singapore",
+  "Punjab",
+  "New York",
 ];
 
 export default function SearchZone({

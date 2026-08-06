@@ -34,7 +34,7 @@ export const MOOD_SUGGESTIONS = {
     description:
       "A bright and thoughtful mood inspired by open skies and clear visibility.",
 
-    quote: QUOTES.truth,
+    quote: QUOTES.water,
 
     songs: {
       day: {
@@ -87,7 +87,7 @@ export const MOOD_SUGGESTIONS = {
     description:
       "A balanced and reflective mood inspired by soft light and layered skies.",
 
-    quote: QUOTES.perspective,
+    quote: QUOTES.truth,
 
     songs: {
       day: {
@@ -299,7 +299,7 @@ export const MOOD_SUGGESTIONS = {
     description:
       "A focused and independent mood inspired by steady rain and constant movement.",
 
-    quote: QUOTES.water,
+    quote: QUOTES.beauty,
 
     songs: {
       day: {
