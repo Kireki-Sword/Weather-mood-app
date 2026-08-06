@@ -15,6 +15,7 @@ import {
   convertTemperature,
   degreesToCompass,
   formatClockFromIso,
+  formatLocalTime,
   formatTemperature,
   getTemperatureUnitLabel,
   getWeatherDescription,
@@ -72,6 +73,10 @@ export default function CurrentWeatherCard({
       current.weatherCode,
       current.isDay === 1
     );
+
+  // Exact local time of the searched city.
+  const localTime =
+    formatLocalTime(current.time);
 
   const locationDetails = [
     location.admin1,
@@ -144,15 +149,33 @@ export default function CurrentWeatherCard({
             )}
           </div>
 
+          {/* Current local time and timezone */}
           <div className="flex w-fit items-center gap-2 rounded-full border border-white/10 bg-base-100/25 px-3 py-2 text-xs font-bold text-base-content/55">
             <Clock3
               size={15}
               aria-hidden="true"
             />
 
-            <span>
-              {weather.timezoneAbbreviation}
-            </span>
+            <time dateTime={current.time}>
+              {localTime}
+            </time>
+
+            {weather.timezoneAbbreviation && (
+              <>
+                <span
+                  className="text-base-content/25"
+                  aria-hidden="true"
+                >
+                  •
+                </span>
+
+                <span>
+                  {
+                    weather.timezoneAbbreviation
+                  }
+                </span>
+              </>
+            )}
           </div>
         </div>
 
@@ -202,9 +225,11 @@ export default function CurrentWeatherCard({
                     today.temperatureMax,
                     temperatureUnit
                   )}
+
                   <span className="mx-2 text-base-content/25">
                     •
                   </span>
+
                   Low{" "}
                   {formatTemperature(
                     today.temperatureMin,
@@ -290,6 +315,7 @@ export default function CurrentWeatherCard({
             </strong>
           </div>
 
+          {/* Local time */}
           <div className="flex items-center gap-3 text-sm">
             <Clock3
               className="text-primary"
@@ -298,14 +324,15 @@ export default function CurrentWeatherCard({
             />
 
             <span className="text-base-content/48">
-              Updated
+              Local time
             </span>
 
-            <strong className="ml-auto text-base-content">
-              {formatClockFromIso(
-                current.time
-              )}
-            </strong>
+            <time
+              dateTime={current.time}
+              className="ml-auto font-bold text-base-content"
+            >
+              {localTime}
+            </time>
           </div>
         </div>
       </div>

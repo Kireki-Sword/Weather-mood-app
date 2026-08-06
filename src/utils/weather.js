@@ -222,3 +222,35 @@ export function formatShortDate(date) {
     day: "numeric",
   }).format(parsedDate);
 }
+
+
+export function formatLocalTime(time) {
+  if (!time?.includes("T")) {
+    return "—";
+  }
+
+  const timePart = time.split("T")[1];
+
+  const [hourText, minuteText] =
+    timePart.split(":");
+
+  const hour = Number(hourText);
+  const minute = Number(minuteText);
+
+  if (
+    !Number.isFinite(hour) ||
+    !Number.isFinite(minute)
+  ) {
+    return "—";
+  }
+
+  const period =
+    hour >= 12 ? "PM" : "AM";
+
+  const displayHour =
+    hour % 12 || 12;
+
+  return `${displayHour}:${String(
+    minute
+  ).padStart(2, "0")} ${period}`;
+}

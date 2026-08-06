@@ -192,22 +192,27 @@ export default function App() {
           ref={resultRegionRef}
           className={
             hasVisibleResultState
-              ? "mt-2 min-h-[calc(100svh-5.5rem)] sm:mt-3"
+              ? "mt-8 sm:mt-10"
               : ""
           }
         >
           {isLoading && (
-            <LoadingWeatherCard />
+              <div className="min-h-[calc(100svh-5.5rem)]">
+                <LoadingWeatherCard />
+              </div>
           )}
 
           {!isLoading && error && (
-            <WeatherError message={error} />
+              <div className="min-h-[calc(100svh-5.5rem)]">
+                <WeatherError message={error} />
+              </div>
           )}
 
           {!isLoading &&
             location &&
             weather && (
               <>
+              <div className="min-h-[calc(100svh-4rem)]">
                 <CurrentWeatherCard
                   location={location}
                   weather={weather}
@@ -222,7 +227,7 @@ export default function App() {
                     temperatureUnit
                   }
                 />
-
+              </div>
                 <MoodSuggestion
                   current={weather.current}
                 />

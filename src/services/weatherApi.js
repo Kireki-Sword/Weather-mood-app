@@ -145,7 +145,12 @@ export async function fetchWeather(
     }
   );
 
-  if (!data.current || !data.daily?.time) {
+  if (
+    !data.current ||
+    !data.current.time ||
+    !Array.isArray(data.daily?.time) ||
+    data.daily.time.length === 0
+  ) {
     throw new Error(
       "The weather service returned incomplete information."
     );
