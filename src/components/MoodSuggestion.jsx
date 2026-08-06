@@ -28,16 +28,9 @@ export default function MoodSuggestion({
         current.weatherCode,
 
       isDay:
-        current.isDay === 1,
+        current.isDay === 1 ||
+        current.isDay === true,
 
-      temperature:
-        current.temperature,
-
-      windSpeed:
-        current.windSpeed,
-
-      // mood.js uses this to choose
-      // morning, afternoon, evening, or night.
       time:
         current.time,
     });
@@ -119,9 +112,9 @@ export default function MoodSuggestion({
         {/* Main mood card */}
         <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-base-200/80 shadow-[0_30px_100px_rgb(0_0_0_/_0.28)]">
           {/* Song section */}
-          <div className="grid lg:grid-cols-[18rem_1fr]">
+          <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
             {/* YouTube video or headphones symbol */}
-            <div className="relative min-h-64 overflow-hidden bg-base-300 lg:min-h-80">
+            <div className="relative aspect-video overflow-hidden bg-base-300 lg:aspect-auto lg:min-h-80">
               {suggestion.song.youtubeId ? (
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${suggestion.song.youtubeId}`}
@@ -197,7 +190,7 @@ export default function MoodSuggestion({
               </p>
             </div>
 
-            <blockquote className="mt-6 max-w-4xl border-l-2 border-primary pl-5 text-2xl font-extrabold leading-relaxed tracking-[-0.025em] text-base-content sm:pl-7 sm:text-3xl lg:text-4xl">
+            <blockquote className="mt-6 max-w-4xl border-l-2 border-primary pl-5 text-xl font-bold leading-relaxed tracking-[-0.02em] text-base-content sm:pl-7 sm:text-2xl lg:text-3xl">
               “{suggestion.quote}”
             </blockquote>
           </div>
