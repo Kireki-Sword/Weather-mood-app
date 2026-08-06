@@ -44,9 +44,9 @@ export const MOOD_SUGGESTIONS = {
       },
 
       night: {
-        title: "Sparkle",
-        artist: "RADWIMPS",
-        url: "https://www.youtube.com/watch?v=a2GujJZfXpg",
+        title: "Lemon",
+        artist: "Kenshi Yonezu",
+        url: "https://www.youtube.com/watch?v=SX_ViT4Ra7k",
       },
     },
 
@@ -91,15 +91,15 @@ export const MOOD_SUGGESTIONS = {
 
     songs: {
       day: {
-        title: "Dramaturgy",
-        artist: "Eve",
-        url: "https://www.youtube.com/watch?v=jJzw1h5CR-I",
+        title: "Avid",
+        artist: "SawanoHiroyuki[nZk]:mizuki",
+        url: "https://www.youtube.com/watch?v=hSzyI3u5DFo",
       },
 
       night: {
-        title: "Hakujitsu",
-        artist: "King Gnu",
-        url: "https://www.youtube.com/watch?v=ony539T074w",
+        title: "Inferno",
+        artist: "Mrs. GREEN APPLE",
+        url: "https://www.youtube.com/watch?v=wfCcs0vLysk",
       },
     },
 
@@ -256,9 +256,9 @@ export const MOOD_SUGGESTIONS = {
       },
 
       night: {
-        title: "Lemon",
-        artist: "Kenshi Yonezu",
-        url: "https://www.youtube.com/watch?v=SX_ViT4Ra7k",
+        title: "Sparkle",
+        artist: "RADWIMPS",
+        url: "https://www.youtube.com/watch?v=a2GujJZfXpg",
       },
     },
 
@@ -309,9 +309,9 @@ export const MOOD_SUGGESTIONS = {
       },
 
       night: {
-        title: "Avid",
-        artist: "SawanoHiroyuki[nZk]:mizuki",
-        url: "https://www.youtube.com/watch?v=hSzyI3u5DFo",
+        title: "Dramaturgy",
+        artist: "Eve",
+        url: "https://www.youtube.com/watch?v=jJzw1h5CR-I",
       },
     },
 
@@ -516,9 +516,9 @@ export const MOOD_SUGGESTIONS = {
 
     songs: {
       day: {
-        title: "Inferno",
-        artist: "Mrs. GREEN APPLE",
-        url: "https://www.youtube.com/watch?v=wfCcs0vLysk",
+        title: "Hakujitsu",
+        artist: "King Gnu",
+        url: "https://www.youtube.com/watch?v=ony539T074w",
       },
 
       night: {
